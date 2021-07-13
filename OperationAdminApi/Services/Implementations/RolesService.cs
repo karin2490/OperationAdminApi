@@ -15,7 +15,7 @@ using M = OperationAdminDB.Models;
 
 namespace OperationAdminApi.Services.Implementations
 {
-    public class RolesService:IRolesService
+    public class RolesService : IRolesService
     {
         private readonly RolesRepository _rolesRepository;
         private readonly ModuleByRoleRepository _modByRoleRepository;
@@ -36,16 +36,16 @@ namespace OperationAdminApi.Services.Implementations
 
                 if (userLogin.UserId != 0)
                 {
-                    if(roleRequest.RoleDescrip ==default || roleRequest.RoleDescrip == null)
+                    if (roleRequest.RoleDescrip == default || roleRequest.RoleDescrip == null)
                     {
                         return "Data can't be null".ToResponse(false, ResponseType.NOT_ACCEPTABLE,
                            "Data can't be null");
                     }
-                    //var validation = await RoleValidate(roleRequest);
-                    //if (validation != E.RoleValidation.Succesfull)
-                    //{
-                    //    return RoleResponse(validation);
-                    //}
+                    var validation = await RoleValidate(roleRequest);
+                    if (validation != E.RoleValidation.Succesfull)
+                    {
+                        return RoleResponse(validation);
+                    }
 
                     M.Role role = new M.Role(
                         roleRequest.RoleId,
@@ -100,7 +100,7 @@ namespace OperationAdminApi.Services.Implementations
 
                 if (userLogin.UserId != 0)
                 {
-                    if(request.ModuleId<0 || request.RoleId < 0)
+                    if (request.ModuleId < 0 || request.RoleId < 0)
                     {
                         return "Data can't be null".ToResponse(false, ResponseType.NOT_ACCEPTABLE,
                            "Data can't be null");
@@ -111,7 +111,7 @@ namespace OperationAdminApi.Services.Implementations
                     {
                         return ModuleByRoleResponse(validation);
                     }
-                    M.ModuleByRole mbyr = 
+                    M.ModuleByRole mbyr =
                         new M.ModuleByRole
                         (
                             request.RoleId,
@@ -199,7 +199,7 @@ namespace OperationAdminApi.Services.Implementations
                     response.Type = ResponseType.UNAUTHORIZED;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Log.Error($"An unhandled exception occured in User Service GetDropDownRolesAsync  Ex: {ex}");
                 throw ex;
@@ -232,16 +232,16 @@ namespace OperationAdminApi.Services.Implementations
             return response;
         }
 
-       
+
 
         private async Task<E.PermissionOnModuleValidation> PermissionOnModuleValidate(PermissionOnModuleRequest permOnModRequest, bool isNew = false)
         {
             var permOnMod = (await _rolesRepository.GetPermissionOnModule(permOnModRequest))
-                .Where(W => W.ModuleId == permOnModRequest.ModuleId && W.PermissionId == permOnModRequest.PermissionId 
-                && W.RoleId== permOnModRequest.RoleId).FirstOrDefault();
+                .Where(W => W.ModuleId == permOnModRequest.ModuleId && W.PermissionId == permOnModRequest.PermissionId
+                && W.RoleId == permOnModRequest.RoleId).FirstOrDefault();
 
-            if ((isNew && permOnMod != null) || (permOnMod!= null && permOnMod.ModuleId != permOnModRequest.ModuleId && 
-                    permOnMod.PermissionId != permOnModRequest.PermissionId && permOnMod.RoleId!= permOnModRequest.RoleId))
+            if ((isNew && permOnMod != null) || (permOnMod != null && permOnMod.ModuleId != permOnModRequest.ModuleId &&
+                    permOnMod.PermissionId != permOnModRequest.PermissionId && permOnMod.RoleId != permOnModRequest.RoleId))
                 return E.PermissionOnModuleValidation.PermissionOnModuleDuplicate;
 
             return E.PermissionOnModuleValidation.Successful;
@@ -258,16 +258,17 @@ namespace OperationAdminApi.Services.Implementations
             return E.ModuleByRoleValidation.Succesfull;
         }
 
-        //private async Task<E.RoleValidation> RoleValidate(RoleRequest request, bool isNew = false)
-        //{
-        //    var role = (await _rolesRepository.GetRoleById(request.RoleId))
-        //        .Where(W => W.RoleDescrip.ToLower() == request.RoleDescrip.ToLower()).FirstOrDefault();
+        private async Task<E.RoleValidation> RoleValidate(RoleRequest request, bool isNew = false)
+        {
+            var roles = (await _rolesRepository.GetRoleById(request.RoleId))
+                  .Where(W => W.RoleDescrip.ToLower() == request.RoleDescrip.ToLower()).FirstOrDefault();
 
-        //    if ((isNew && role != null) || (role != null && role.RoleDescrip != request.RoleDescrip))
-        //        return E.RoleValidation.RoleDuplicate;
+            if ((isNew && roles != null) || (roles != null && roles.RoleId != request.RoleId))
+                return E.RoleValidation.RoleDuplicate;
 
-        //    return E.RoleValidation.Succesfull;
-        //}
+            return E.RoleValidation.Succesfull;
+
+        }
         private Response ModuleByRoleResponse(E.ModuleByRoleValidation validation)
         {
             if (validation == E.ModuleByRoleValidation.ModuleByRoleDuplicate)

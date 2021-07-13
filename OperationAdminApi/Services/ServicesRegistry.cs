@@ -10,6 +10,8 @@ namespace OperationAdminApi.Services
         public static IServiceCollection Add_ServicesRegistry(this IServiceCollection services)
         {
             services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<IPermissionService, PermissionService>();
             services.AddScoped<IProfileService, ProfileService>();
             services.AddScoped<ITeamByUserService, TeamByUserService>();
             services.AddScoped<ITeamLogService, TeamLogService>();

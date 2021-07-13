@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-#nullable disable
-
-namespace OperationAdminDB.Models
+namespace OperationAdminApi.CommonObjects.DTOs
 {
-    public partial class Token
+    public class TokensDTO
     {
-        public int TokenId { get; set; }
+        public int Tokenid { get; set; }
         public string Email { get; set; }
         public string TokenStr { get; set; }
         public bool Revoked { get; set; }
-
-       
     }
 }

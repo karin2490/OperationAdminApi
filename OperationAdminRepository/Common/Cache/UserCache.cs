@@ -14,6 +14,6 @@ namespace OpAdminRepository.Common.Cache
         public string LastName { get; set; }
 
         public List<string> Roles { get; set; }
-        public List<Cache_ActionsOnFunctionalities> FunctCache { get; set; }
+        public List<Cache_PermissionsOnModule> PermissionCache { get; set; }
     }
 }

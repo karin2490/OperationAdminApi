@@ -19,16 +19,16 @@ namespace OperationAdminApi.Infraestructure.Repository
             this.DBCon = DBContext;
         }
 
-        public async Task<D.RoleDTO> GetRoleById(int RolId)
+        public async Task<List<D.RoleDTO>> GetRoleById(int RolId)
         {
-            D.RoleDTO roles = await (from ROLES in DBCon.Roles
-                                    where ROLES.RoleId == RolId
-                                    select new D.RoleDTO 
-                                    { 
-                                    RoleId=ROLES.RoleId,
-                                    RoleDescrip=ROLES.RoleDescrip,
-                                    Status=ROLES.Status,
-                                    }).FirstOrDefaultAsync();
+            List<D.RoleDTO> roles = await (from ROLES in DBCon.Roles
+                                           where ROLES.RoleId == RolId
+                                           select new D.RoleDTO
+                                           {
+                                               RoleId = ROLES.RoleId,
+                                               RoleDescrip = ROLES.RoleDescrip,
+                                               Status = ROLES.Status,
+                                           }).ToListAsync();
             return roles;
         }
         public async Task<List<D.PermissionOnModuleDTO>> GetPermissionOnModule(PermissionOnModuleRequest request)

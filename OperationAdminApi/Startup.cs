@@ -45,6 +45,7 @@ namespace OperationAdminApi
             Configuration = configuration;
         }
 
+        public static string FrontEndKeyStr { get; private set; }
         public IConfiguration Configuration { get; }
         public object JwtBearerDefaults { get; private set; }
 
@@ -61,6 +62,9 @@ namespace OperationAdminApi
 
             var section = Configuration.GetSection("HostService:HostNoCORS");
             var HostPermitidos = section.Get<string[]>();
+
+            var frontEndKey = Configuration.GetSection("FrontEnd:key");
+            FrontEndKeyStr = frontEndKey.Get<string>();
 
             services.AddCors(options =>
             {
