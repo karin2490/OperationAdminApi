@@ -12,12 +12,11 @@ namespace OperationAdminApi.Infraestructure.Repository
         {
            
             services.AddScoped<AccountRepository>();
-           
-            services.AddScoped<PermissionRepository>();
+            services.AddScoped<AuthRepository>();
             services.AddScoped<ModuleByRoleRepository>();
-          
-           
+            services.AddScoped<PermissionRepository>();
             services.AddScoped<RolesRepository>();
+            services.AddScoped<TeamByUserRepository>();
             services.AddScoped<TeamsLogRepository>();
             services.AddScoped<TeamsRepository>();
             services.AddScoped<UserProfileRepository>();

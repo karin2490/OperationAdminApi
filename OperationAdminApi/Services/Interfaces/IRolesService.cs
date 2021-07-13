@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OpAdminCore.Services.Interfaces
+namespace OperationAdminApi.Services.Interfaces
 {
     public interface IRolesService
     {

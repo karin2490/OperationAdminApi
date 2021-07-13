@@ -13,6 +13,7 @@ namespace OperationAdminApi.Services
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IPermissionService, PermissionService>();
             services.AddScoped<IProfileService, ProfileService>();
+            services.AddScoped<IRolesService, IRolesService>();
             services.AddScoped<ITeamByUserService, TeamByUserService>();
             services.AddScoped<ITeamLogService, TeamLogService>();
             services.AddScoped<ITeamService, TeamService>();
