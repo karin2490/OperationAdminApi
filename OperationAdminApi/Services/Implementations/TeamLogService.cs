@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Http;
-using OpAdminCore.Services.Interfaces;
 using OperationAdminApi.CommonObjects.Request;
 using OperationAdminApi.Infraestructure.Repository;
 using OperationAdminRepository.Common;

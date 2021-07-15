@@ -11,6 +11,7 @@ namespace OperationAdminApi.Services.Interfaces
     public interface IUserService
     {
         Task<Response> InsertUserAsync(HttpContext context, UserRequest userRequest);
+        Task<Response> GetUserAsync(HttpContext context, int userId);
         Task<Response> UpdateUserAsync(HttpContext context, UserRequest userRequest);
         Task<Response> DeleteUserAsync(HttpContext context, int userId);
         Task<Response> GetAllNumberUserAsync(HttpContext context);

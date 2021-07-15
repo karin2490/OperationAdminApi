@@ -79,7 +79,7 @@ namespace OperationAdminApi.Utils
             }
             catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
             return result;
         }

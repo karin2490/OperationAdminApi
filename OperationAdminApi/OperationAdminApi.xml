@@ -4,5 +4,46 @@
         <name>OperationAdminApi</name>
     </assembly>
     <members>
+        <member name="M:OperationAdminApi.Controllers.V1.UsersController.GetAll(System.Int32,System.Int32)">
+            <summary>
+            Get All User service
+            </summary>
+            <remarks>
+            Sample request:
+            GET: api/v1/UsersController/GetAll
+            </remarks>        
+            <returns></returns>
+            <response code="200">Number of records (Count)</response>
+            <response code="401"> Unauthorized: You need a token or valid token</response>
+            <response code="500">There was an error with function</response>
+        </member>
+        <member name="M:OperationAdminApi.Controllers.V1.UsersController.GetUser(System.Int32)">
+            <summary>
+            Get All User service
+            </summary>
+            <remarks>
+            Sample request:
+            GET: api/v1/UsersController/GetUser
+            </remarks>        
+            <returns></returns>
+            <response code="200">Number of records (Count)</response>
+            <response code="401"> Unauthorized: You need a token or valid token</response>
+            <response code="500">There was an error with function</response>
+        </member>
+        <member name="M:OperationAdminApi.Controllers.V1.UsersController.Create(OperationAdminApi.CommonObjects.Request.UserRequest)">
+             <summary>
+             User Create service
+             </summary>
+             <remarks>
+             Sample request:
+             
+             </remarks> 
+            
+             <returns></returns>
+             <response code="200">Number of records (Count)</response>
+             <response code="401"> Unauthorized: You need a token or valid token</response>
+             <response code="406">User email invalid or User email duplicate</response>
+             <response code="500">There was an error with function</response>
+        </member>
     </members>
 </doc>

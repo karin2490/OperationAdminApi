@@ -17,8 +17,4 @@
     <ProjectReference Include="..\OperationAdminRepository\OperationAdminRepository.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Contract\" />
-  </ItemGroup>
-
 </Project>

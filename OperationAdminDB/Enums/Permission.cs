@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OperationAdminDB.Enum
 {
-    public enum Action:int
+    public enum Permission:int
     {
         CREATE = 1,
         READ = 2,

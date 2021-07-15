@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OperationAdminDB.Enum
 {
-    public enum Functionality:int
+    public enum Module:int
     {
         TEAMS=1,
         USER=2,

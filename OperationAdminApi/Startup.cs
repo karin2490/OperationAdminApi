@@ -53,6 +53,7 @@ namespace OperationAdminApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddRouting();
 
             services.AddDbContext<OperationAdminContext>(x => x.UseSqlServer(Configuration["connectionStrings:ArkusDB"]).EnableDetailedErrors(true).EnableSensitiveDataLogging(true));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
@@ -162,11 +163,14 @@ namespace OperationAdminApi
 
             app.UseCors("CorsPolicy");
 
+            app.UseAuthentication();
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+               
             });
 
             loggerFactory.AddSerilog();

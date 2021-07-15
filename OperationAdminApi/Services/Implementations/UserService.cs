@@ -15,16 +15,20 @@ using M = OperationAdminDB.Models;
 using E= OperationAdminApi.CommonObjects.Enum;
 using Microsoft.EntityFrameworkCore;
 using U = OperationAdminRepository.Utils;
+using AutoMapper;
 
 namespace OperationAdminApi.Services.Implementations
 {
     public class UserService:IUserService
     {
         private readonly UsersRepository _userRepository;
+        private readonly IMapper _mapper;
         Response response { get; set; }
-        public UserService(UsersRepository _userRepository) 
+
+        public UserService(UsersRepository _userRepository, IMapper mapper) 
         {
             this._userRepository = _userRepository;
+            this._mapper = mapper;
             response = new Response();
         }
 
@@ -97,6 +101,38 @@ namespace OperationAdminApi.Services.Implementations
             catch (Exception ex)
             {
                 Log.Error($"An unhandled exception occured in User Service DeleteUserAsync  Ex: {ex}");
+                throw ex;
+            }
+        }
+
+        public async Task<Response> GetUserAsync(HttpContext context, int Id)
+        {
+            try
+            {
+                var UserId = Utils.UtilsMethods.GetUserCacheFromContext(context.User).UserId;
+                var userLogin = await _userRepository.GetByIdAsync(UserId);
+
+                if(userLogin.UserId != 0)
+                {
+                    M.User user = await _userRepository.FindUserById(Id);
+                    if (user!= default(M.User))
+                    {
+                        return _mapper.Map<D.UsersDTO>(user).ToResponse("User found.");
+                    }
+                    else
+                    {
+                        return response.ToResponse("User not found.");
+                    }
+                }
+                else
+                {
+                    response.Type = ResponseType.UNAUTHORIZED;
+                    return response;
+                }
+            }
+            catch(Exception ex)
+            {
+                Log.Error($"An unhandled exception occured in User Service GetUserAsync Ex: {ex}");
                 throw ex;
             }
         }
