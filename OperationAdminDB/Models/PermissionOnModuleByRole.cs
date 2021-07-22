@@ -5,8 +5,12 @@ using System.Collections.Generic;
 
 namespace OperationAdminDB.Models
 {
-    public partial class PermissionOnModuleByRole
+    public  class PermissionOnModuleByRole
     {
+        public PermissionOnModuleByRole()
+        {
+
+        }
         public PermissionOnModuleByRole(int moduleId,int roleId,int permId,bool status)
         {
             PermissionId = permId;

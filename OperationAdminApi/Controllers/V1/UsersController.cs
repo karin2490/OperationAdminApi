@@ -44,7 +44,7 @@ namespace OperationAdminApi.Controllers.V1
         /// <response code="500">There was an error with function</response>
         [HttpGet("get-all")]
         [Authorize(AuthenticationSchemes=JwtBearerDefaults.AuthenticationScheme)]
-        [Utils.AuthorizeAction(ENUM.Module.USER, ENUM.Permission.READ)]
+        //[Utils.AuthorizeAction(ENUM.Module.USER, ENUM.Permission.READ)]
         public async Task<ActionResult<IResponse>> GetAll(int page=0, int quantity=0)
         {
             try
@@ -80,7 +80,7 @@ namespace OperationAdminApi.Controllers.V1
         /// <response code="500">There was an error with function</response>
         [HttpGet("{id}")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        [Utils.AuthorizeAction(ENUM.Module.USER, ENUM.Permission.READ)]
+        //[Utils.AuthorizeAction(ENUM.Module.USER, ENUM.Permission.READ)]
         public async Task<ActionResult<IResponse>> GetUser(int id)
         {
             try
@@ -118,7 +118,7 @@ namespace OperationAdminApi.Controllers.V1
         /// <response code="500">There was an error with function</response>
         [HttpPost("create")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        [Utils.AuthorizeAction(ENUM.Module.USER, ENUM.Permission.CREATE)]
+        //[Utils.AuthorizeAction(ENUM.Module.USER, ENUM.Permission.CREATE)]
         public async Task<ActionResult<IResponse>> Create(R.UserRequest userRequest)
         {
             try
@@ -143,7 +143,7 @@ namespace OperationAdminApi.Controllers.V1
         // PUT api/<UsersController>/5
         [HttpPut("{update}")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        [Utils.AuthorizeAction(ENUM.Module.USER, ENUM.Permission.UPDATE)]
+        //[Utils.AuthorizeAction(ENUM.Module.USER, ENUM.Permission.UPDATE)]
         public async Task<ActionResult<IResponse>> Update(R.UserRequest userRequest)
         {
             try
@@ -167,7 +167,7 @@ namespace OperationAdminApi.Controllers.V1
 
         [HttpPut("inactive/{userId}")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        [Utils.AuthorizeAction(ENUM.Module.USER, ENUM.Permission.UPDATE)]
+        //[Utils.AuthorizeAction(ENUM.Module.USER, ENUM.Permission.UPDATE)]
         public async Task<ActionResult<IResponse>> Inactive(int userId)
         {
             try
@@ -191,7 +191,7 @@ namespace OperationAdminApi.Controllers.V1
 
         [HttpPut("active/{userId}")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        [Utils.AuthorizeAction(ENUM.Module.USER, ENUM.Permission.UPDATE)]
+        //[Utils.AuthorizeAction(ENUM.Module.USER, ENUM.Permission.UPDATE)]
         public async Task<ActionResult<IResponse>> Active(int userId)
         {
             try
@@ -216,7 +216,7 @@ namespace OperationAdminApi.Controllers.V1
         // DELETE api/<UsersController>/5
         [HttpDelete("delete/{userId}")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        [Utils.AuthorizeAction(ENUM.Module.USER, ENUM.Permission.DELETE)]
+        //[Utils.AuthorizeAction(ENUM.Module.USER, ENUM.Permission.DELETE)]
         public async Task<ActionResult<IResponse>> Delete(int id)
         {
             try

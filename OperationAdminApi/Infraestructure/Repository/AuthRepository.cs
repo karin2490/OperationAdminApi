@@ -23,7 +23,8 @@ namespace OperationAdminApi.Infraestructure.Repository
 
         public async Task<M.User> GetloginAync(AuthorizationRequest authRequest)
         {
-            return await DBCon.Users.Where(X => X.Email == authRequest.Email && X.Status).FirstOrDefaultAsync();
+            var user= DBCon.Users.Where(X => X.Email == authRequest.Email && X.Status).FirstOrDefaultAsync();
+            return await user;
         }
 
         public async Task<M.User> GetUserAsync(M.User userInfo)

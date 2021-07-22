@@ -55,7 +55,7 @@ namespace OperationAdminApi
             services.AddControllers();
             services.AddRouting();
 
-            services.AddDbContext<OperationAdminContext>(x => x.UseSqlServer(Configuration["connectionStrings:ArkusDB"]).EnableDetailedErrors(true).EnableSensitiveDataLogging(true));
+            services.AddDbContext<OperationAdminContext>(x => x.UseSqlServer(Configuration["connectionStrings:OperationDB"]).EnableDetailedErrors(true).EnableSensitiveDataLogging(true));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
             services.Add_RepositoryRegistry();
@@ -102,7 +102,7 @@ namespace OperationAdminApi
                 c.SwaggerDoc("V1", new OpenApiInfo
                 {
                     Version = "V1",
-                    Title = "Arkus Core API V1",
+                    Title = "Operation Admin API V1",
                     Description = "This API is a database service",
                 });
 

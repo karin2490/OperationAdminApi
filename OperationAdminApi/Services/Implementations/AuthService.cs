@@ -74,6 +74,12 @@ namespace OperationAdminApi.Services.Implementations
                 }
                 else
                 {
+                    //if(authRequest.Email=="root@arkusnexus.com" && authRequest.Pin=="1234")
+                    //{
+                    //    var token = await BuildToken(result);
+                    //    return token.ToResponse("Valid User");
+
+                    //}
                     var userPin = MD5.Decrypt(result.PassEncrypted);
                     if (userPin == authRequest.Pin)
                     {

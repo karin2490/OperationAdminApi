@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace OperationAdminDB.Models
 {
-    public partial class User
+    public  class User
     {
         public User()
         {

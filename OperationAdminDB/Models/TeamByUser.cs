@@ -7,7 +7,12 @@ namespace OperationAdminDB.Models
 {
     public partial class TeamByUser
     {
-        public TeamByUser(int teamId,int userId,DateTime? startDate,DateTime? enddate,DateTime now,bool status)
+        public TeamByUser()
+        {
+
+        }
+
+        public TeamByUser(int teamId, int userId, DateTime? startDate, DateTime? enddate, DateTime now, bool status)
         {
             TeamId = teamId;
             UserId = userId;

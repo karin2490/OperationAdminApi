@@ -19,6 +19,7 @@ namespace OperationAdminApi.Infraestructure.Repository
             services.AddScoped<TeamByUserRepository>();
             services.AddScoped<TeamsLogRepository>();
             services.AddScoped<TeamsRepository>();
+            services.AddScoped<TokenRepository>();
             services.AddScoped<UserProfileRepository>();
             services.AddScoped<UsersRepository>();
             

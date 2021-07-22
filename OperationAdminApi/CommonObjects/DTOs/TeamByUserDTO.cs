@@ -17,4 +17,6 @@ namespace OperationAdminApi.CommonObjects.DTOs
         public DateTime DateRegister { get; set; }
         public bool Status { get; set; }
     }
+
+
 }

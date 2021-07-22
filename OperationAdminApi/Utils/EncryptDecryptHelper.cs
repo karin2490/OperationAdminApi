@@ -11,11 +11,13 @@ namespace OperationAdminApi.Utils
     public static class EncryptDecryptHelper
     {
         private static byte[] keyAndIvBytes;
+
         static EncryptDecryptHelper()
         {
             keyAndIvBytes = Encoding.UTF8.GetBytes(Startup.FrontEndKeyStr);
         }
 
+        #region Public Methods
         public static string EncryptAndEncode(this string plaintext)
         {
             return ByteArrayToHexString(AesEncrypt(plaintext));
@@ -26,7 +28,7 @@ namespace OperationAdminApi.Utils
             string DecodeAndDecrypt = AesDecrypt(Convert.FromBase64String(cipherText));
             return (DecodeAndDecrypt);
         }
-
+        #endregion Public Methods
 
 
         private static string ByteArrayToHexString(byte[] ba)

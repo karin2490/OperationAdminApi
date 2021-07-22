@@ -4,6 +4,61 @@
         <name>OperationAdminApi</name>
     </assembly>
     <members>
+        <member name="M:OperationAdminApi.Controllers.V1.AuthController.Login(OperationAdminApi.CommonObjects.Request.AuthorizationRequest)">
+             <summary>
+             Login service
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 POST /Login
+                 {       
+                     "email": "user@example.com"
+                     "pin": "password",
+                 }
+            
+             </remarks>
+             <param name="authRequest">Auth</param>        
+             <returns></returns>
+             <response code="200"> When it's right Message = Valid User</response>
+             <response code="401"> Unauthorized: You need a token or valid token</response>
+             <response code="406"> User does not exist Message = Invalid User and this is another Message = Invalid password</response>        
+             <response code="500"> Fatal error Message = Error of function</response>
+        </member>
+        <member name="M:OperationAdminApi.Controllers.V1.AuthController.RefToken(System.String)">
+             <summary>
+             Refresh Token service
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 POST /Refresh/{token}
+                 {       
+                    
+                 }
+            
+             </remarks>
+             <param name="tokenStr">Auth</param>        
+             <returns></returns>
+             <response code="200"> When it's right Message = Valid User</response>
+             <response code="401"> Unauthorized: You need a token or valid token</response>
+             <response code="406"> User does not exist Message = Invalid User and this is another Message = Invalid password</response>        
+             <response code="500"> Fatal error Message = Error of function</response>
+        </member>
+        <member name="M:OperationAdminApi.Controllers.V1.AuthController.RevokeToken(System.Int32)">
+            <summary>
+            Revoke Refresh Token
+            </summary>
+            <remarks>
+            Sample request:
+            Post    /Revoke/{Id}     
+            </remarks>        
+            <returns></returns>
+            <response code="200">When it's right Message = Token Revoked</response>
+            <response code="401"> Unauthorized: You need a token or valid token</response>
+            <response code="500">There was an error with function</response>   
+            <response code="500"> Fatal error Message = Error of function</response>
+        </member>
         <member name="M:OperationAdminApi.Controllers.V1.UsersController.GetAll(System.Int32,System.Int32)">
             <summary>
             Get All User service

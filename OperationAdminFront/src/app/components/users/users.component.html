@@ -6,7 +6,17 @@
             <div class="text-center">Lista de Usuarios</div>
             <div>
                 <table class="table table-sm">
-                    <tr *ngFor="let usuario of listaUsuarios"></tr>
+                    <tr *ngFor="let usuario of listaUsuarios">
+                        <!-- <td>{{usuario.firstName}}</td>
+                        <td>{{usuario.lastName}}</td>
+                        <td>{{usuario.email}}</td>
+                        <td>{{usuario.admissionDate}}</td>
+                        <td>{{usuario.status}}</td> -->
+                        <td>
+                            <i class="far fa-edit fa lg text-info" style="cursor: pointer;"></i>
+                        </td>
+                        
+                    </tr>
                 </table>
             </div>
         </div>

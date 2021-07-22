@@ -5,14 +5,20 @@ using System.Collections.Generic;
 
 namespace OperationAdminDB.Models
 {
-    public partial class ModuleByRole
+    public class ModuleByRole
     {
-        public ModuleByRole(int rolId,int modId, bool status)
+        public ModuleByRole()
+        {
+
+        }
+
+        public ModuleByRole(int rolId, int modId, bool status)
         {
             RoleId = rolId;
             ModuleId = modId;
             Status = status;
         }
+
         public int ModuleByRoleId { get; set; }
         public int RoleId { get; set; }
         public int ModuleId { get; set; }
@@ -21,4 +27,8 @@ namespace OperationAdminDB.Models
         public virtual Module Module { get; set; }
         public virtual Role Role { get; set; }
     }
+
+    
+      
+
 }

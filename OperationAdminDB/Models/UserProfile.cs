@@ -7,6 +7,10 @@ namespace OperationAdminDB.Models
 {
     public partial class UserProfile
     {
+        public UserProfile()
+        {
+
+        }
 
         public UserProfile(int userid,string englishLevel,string techSkills,string link,bool status)
         {
