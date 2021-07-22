@@ -19,6 +19,7 @@ namespace OperationAdminApi.Services.Interfaces
 
         Task<Response> SetModuleByRole(HttpContext context, ModuleByRoleRequest request);
         Task<Response> SetModulePermissions(HttpContext context, PermissionOnModuleRequest permOnModuleReq);
+        Task<Response> GetRoleById(HttpContext context, int roleId);
         Task<Response> GetDropDownRolesAsync(HttpContext context);
         Task<Response> GetModuleByRoleId(HttpContext context, int RoleId);
         

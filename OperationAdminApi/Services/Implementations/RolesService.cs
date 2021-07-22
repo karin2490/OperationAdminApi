@@ -72,24 +72,156 @@ namespace OperationAdminApi.Services.Implementations
             return response;
         }
 
-        public Task<Response> UpdateRoleAsync(HttpContext context, RoleRequest roleRequest)
+        public async Task<Response> UpdateRoleAsync(HttpContext context, RoleRequest roleRequest)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var userCache = Utils.UtilsMethods.GetUserCacheFromContext(context.User);
+                var userLogin =await _rolesRepository.GetByIdAsync<M.User>(userCache.UserId);
+
+                if (userLogin.UserId != 0)
+                {
+                    if (roleRequest.RoleDescrip == default || roleRequest.RoleDescrip == null) { 
+                    return "Data can't be empty or null"
+                            .ToResponse(false, ResponseType.NOT_ACCEPTABLE, "Data can't be empty or null");
+                    }
+
+                    M.Role role = _rolesRepository.GetById(roleRequest.RoleId);
+
+                    if (role == null)
+                    {
+                        return "Data not found".ToResponse(false, ResponseType.NOT_ACCEPTABLE, "Data not found");
+                    }
+
+                    var validation = await RoleValidate(roleRequest);
+                    if (validation != E.RoleValidation.Succesfull)
+                    {
+                        return RoleResponse(validation);
+                    }
+
+                    role.RoleDescrip = roleRequest.RoleDescrip;
+                    _rolesRepository.Update(role);
+                    await _rolesRepository.SaveAsync();
+
+                    return role.ToResponse("Updated Role");
+                }
+                else
+                {
+                    response.Type = ResponseType.UNAUTHORIZED;
+                    return response;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"Some Error happened on Account Service GetRoleById Ex: {ex}");
+                throw ex;
+            }
         }
 
-        public Task<Response> DeleteRoleAsync(HttpContext context, int roleId)
+        public async Task<Response> DeleteRoleAsync(HttpContext context, int roleId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var userId = Utils.UtilsMethods.GetUserCacheFromContext(context.User).UserId;
+                var userLogin = await _rolesRepository.GetByIdAsync<M.User>(userId);
+
+                if (userLogin.UserId != 0)
+                {
+                    M.Role role = await _rolesRepository.GetByIdAsync(roleId);
+                    if (role == null)
+                    {
+                        return "Data not found".ToResponse(false, ResponseType.NOT_ACCEPTABLE, "Data not found");
+                    }
+
+                    var hasModules = (await _rolesRepository.GetModulesByRol(roleId)).Count();
+                    if (hasModules > 0)
+                    {
+                        return role.RoleDescrip.ToResponse("It's not possible to delete this role because it's referenced in one or multiple modules");
+                    }
+
+                    _rolesRepository.Delete(role);
+                    await _rolesRepository.SaveAsync();
+                    return role.ToResponse("Deleted Role");
+                }
+                else
+                {
+                    response.Type = ResponseType.UNAUTHORIZED;
+                    return response;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"Some Error happened on Account Service GetRoleById Ex: {ex}");
+                throw ex;
+            }
         }
 
-        public Task<Response> ActiveRoleAsync(HttpContext context, int roleId)
+        public async Task<Response> ActiveRoleAsync(HttpContext context, int roleId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var userCache = Utils.UtilsMethods.GetUserCacheFromContext(context.User);
+                var userLogin = await _rolesRepository.GetByIdAsync<M.User>(userCache.UserId);
+
+                if (userLogin.UserId != 0)
+                {
+                    M.Role role = _rolesRepository.GetById(roleId);
+                    if (role == null)
+                    {
+                        return "Data not found".ToResponse(false, ResponseType.NOT_ACCEPTABLE, "Data not found");
+                    }
+
+                    role.Status = true;
+                    _rolesRepository.Update(role);
+                     await _rolesRepository.SaveAsync();
+
+                    return role.ToResponse("Active Role");
+                }
+                else
+                {
+                    response.Type = ResponseType.UNAUTHORIZED;
+                    return response;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"Some Error happened on Account Service GetRoleById Ex: {ex}");
+                throw ex;
+            }
         }
 
-        public Task<Response> InactiveRoleAsync(HttpContext context, int roleId)
+        public async Task<Response> InactiveRoleAsync(HttpContext context, int roleId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var userCache = Utils.UtilsMethods.GetUserCacheFromContext(context.User);
+                var userLogin = await _rolesRepository.GetByIdAsync<M.User>(userCache.UserId);
+
+                if (userLogin.UserId != 0)
+                {
+                    M.Role role = _rolesRepository.GetById(roleId);
+                    if (role == null)
+                    {
+                        return "Data not found".ToResponse(false, ResponseType.NOT_ACCEPTABLE, "Data not found");
+                    }
+
+                    role.Status = false;
+                    _rolesRepository.Update(role);
+                    await _rolesRepository.SaveAsync();
+
+                    return role.ToResponse("Active Role");
+                }
+                else
+                {
+                    response.Type = ResponseType.UNAUTHORIZED;
+                    return response;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"Some Error happened on Account Service GetRoleById Ex: {ex}");
+                throw ex;
+            }
         }
 
         public async Task<Response> SetModuleByRole(HttpContext context, ModuleByRoleRequest request)
@@ -180,6 +312,39 @@ namespace OperationAdminApi.Services.Implementations
                 Log.Error($"An unhandled exception occured in User Service SetModuleByRole  Ex: {ex}");
                 throw ex;
             }
+            return response;
+        }
+
+        public async Task<Response> GetRoleById(HttpContext context, int roleId)
+        {
+            try
+            {
+                var userId = Utils.UtilsMethods.GetUserCacheFromContext(context.User).UserId;
+                var userLogin = await _rolesRepository.GetByIdAsync<M.User>(userId);
+
+                if (userLogin.UserId != 0)
+                {
+                    var role = await _rolesRepository.GetRoleById(roleId);
+                    if (role != null)
+                    {
+                        response = role.ToResponse("Role found");
+                    }
+                    else
+                    {
+                        response = role.ToResponse("Role not found");
+                    }
+                }
+                else
+                {
+                    response.Type = ResponseType.UNAUTHORIZED;
+                }
+            }
+            catch(Exception ex)
+            {
+                Log.Error($"Some Error happened on Account Service GetRoleById Ex: {ex}");
+                throw ex;
+            }
+
             return response;
         }
 

@@ -43,9 +43,9 @@ namespace OperationAdminApi.Controllers.V1
         /// <response code="401"> Unauthorized: You need a token or valid token</response>
         /// <response code="500">There was an error with function</response>
         [HttpGet("get-all")]
-        [Authorize(AuthenticationSchemes=JwtBearerDefaults.AuthenticationScheme)]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         //[Utils.AuthorizeAction(ENUM.Module.USER, ENUM.Permission.READ)]
-        public async Task<ActionResult<IResponse>> GetAll(int page=0, int quantity=0)
+        public async Task<ActionResult<IResponse>> GetAll(int page = 0, int quantity = 0)
         {
             try
             {
@@ -58,9 +58,9 @@ namespace OperationAdminApi.Controllers.V1
                 {
                     return Ok(response);
                 }
-            
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Log.Fatal(ex.StackTrace);
                 return StatusCode(500, ex.ToResponseExeption());
@@ -85,7 +85,7 @@ namespace OperationAdminApi.Controllers.V1
         {
             try
             {
-                Response response = await _userService.GetUserAsync(HttpContext,id);
+                Response response = await _userService.GetUserAsync(HttpContext, id);
                 if (response.Type != ResponseType.SUCCESS)
                 {
                     return StatusCode((int)response.Type, response);
@@ -108,7 +108,17 @@ namespace OperationAdminApi.Controllers.V1
         /// </summary>
         /// <remarks>
         /// Sample request:
-        /// 
+        /// POST api/v1/Users/Update
+        ///     {       
+        ///         "UserId": 0,
+        ///         "FirstName": "string",
+        ///         "LastName": "string",
+        ///         "Email": "string",
+        ///         "RoleId": 0,
+        ///         "AccountId": 0,      
+        ///         "AdmissionDate":"string",
+        ///         "Status": true
+        ///     }
         /// </remarks> 
         ///
         /// <returns></returns>
@@ -140,7 +150,32 @@ namespace OperationAdminApi.Controllers.V1
             }
         }
 
-        // PUT api/<UsersController>/5
+        /// <summary>
+        /// Account Update service
+        /// </summary>
+        /// <remarks>
+        /// Sample request:
+        ///
+        ///     POST api/v1/Users/Update
+        ///     {       
+        ///         "UserId": 0,
+        ///         "FirstName": "string",
+        ///         "LastName": "string",
+        ///         "Email": "string",
+        ///         "RoleId": 0,
+        ///         "AccountId": 0,      
+        ///         "AdmissionDate":"string",
+        ///         "Status": true
+        ///     }
+        ///
+        /// </remarks>
+        /// <param name="userRequest"></param>        
+        /// <returns></returns>
+        /// <response code="200">Update action</response>  
+        /// <response code="401"> Unauthorized: You need a token or valid token</response>
+        /// <response code="404"> Data not found (Id)</response> 
+        /// <response code="406"> Data can't be empty or null (Name)</response>
+        /// <response code="500">There was an error with function</response>
         [HttpPut("{update}")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         //[Utils.AuthorizeAction(ENUM.Module.USER, ENUM.Permission.UPDATE)]
@@ -237,6 +272,8 @@ namespace OperationAdminApi.Controllers.V1
                 return StatusCode(500, ex.ToResponseExeption());
             }
         }
+
+        
 
         
     }

@@ -59,6 +59,68 @@
             <response code="500">There was an error with function</response>   
             <response code="500"> Fatal error Message = Error of function</response>
         </member>
+        <member name="M:OperationAdminApi.Controllers.V1.RolesController.GetRole(System.Int32)">
+             <summary>
+             Get a specific userType
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 GET api/v1/Roles/{Id}
+                 {               
+                 }
+            
+             </remarks>         
+             <returns></returns>
+             <response code="200"> Number of records (count)</response>
+             <response code="401"> Unauthorized: You need a token or valid token</response>        
+             <response code="500"> There was an error with function</response>
+        </member>
+        <member name="M:OperationAdminApi.Controllers.V1.RolesController.Create(OperationAdminApi.CommonObjects.Request.RoleRequest)">
+             <summary>
+             User Type Create service
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 POST api/v1/Roles/Update
+                 {       
+                     "RoleId": 0,
+                     "RoleDescription": "string",
+                     "Status": true
+                 }
+            
+             </remarks>
+             <param name="roleRequest">Auth</param>        
+             <returns></returns>
+             <response code="200">Add new record</response>
+             <response code="401"> Unauthorized: You need a token or valid token</response>
+             <response code="406"> Data can't be empty or null (Description)</response>
+             <response code="500">There was an error with function</response>
+        </member>
+        <member name="M:OperationAdminApi.Controllers.V1.RolesController.Update(OperationAdminApi.CommonObjects.Request.RoleRequest)">
+             <summary>
+             Account Update service
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 POST api/v1/Roles/Update
+                 {       
+                     "RoleId": 0,
+                     "RoleDescription": "string",
+                     "Status": true
+                 }
+            
+             </remarks>
+             <param name="roleRequest"></param>        
+             <returns></returns>
+             <response code="200">Update action</response>  
+             <response code="401"> Unauthorized: You need a token or valid token</response>
+             <response code="404"> Data not found (Id)</response> 
+             <response code="406"> Data can't be empty or null (Name)</response>
+             <response code="500">There was an error with function</response>
+        </member>
         <member name="M:OperationAdminApi.Controllers.V1.UsersController.GetAll(System.Int32,System.Int32)">
             <summary>
             Get All User service
@@ -91,13 +153,51 @@
              </summary>
              <remarks>
              Sample request:
-             
+             POST api/v1/Users/Update
+                 {       
+                     "UserId": 0,
+                     "FirstName": "string",
+                     "LastName": "string",
+                     "Email": "string",
+                     "RoleId": 0,
+                     "AccountId": 0,      
+                     "AdmissionDate":"string",
+                     "Status": true
+                 }
              </remarks> 
             
              <returns></returns>
              <response code="200">Number of records (Count)</response>
              <response code="401"> Unauthorized: You need a token or valid token</response>
              <response code="406">User email invalid or User email duplicate</response>
+             <response code="500">There was an error with function</response>
+        </member>
+        <member name="M:OperationAdminApi.Controllers.V1.UsersController.Update(OperationAdminApi.CommonObjects.Request.UserRequest)">
+             <summary>
+             Account Update service
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 POST api/v1/Users/Update
+                 {       
+                     "UserId": 0,
+                     "FirstName": "string",
+                     "LastName": "string",
+                     "Email": "string",
+                     "RoleId": 0,
+                     "AccountId": 0,      
+                     "AdmissionDate":"string",
+                     "Status": true
+                 }
+            
+             </remarks>
+             <param name="userRequest"></param>        
+             <returns></returns>
+             <response code="200">Update action</response>  
+             <response code="401"> Unauthorized: You need a token or valid token</response>
+             <response code="404"> Data not found (Id)</response> 
+             <response code="406"> Data can't be empty or null (Name)</response>
              <response code="500">There was an error with function</response>
         </member>
     </members>

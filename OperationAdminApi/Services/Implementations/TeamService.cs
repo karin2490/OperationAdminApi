@@ -29,7 +29,7 @@ namespace OperationAdminApi.Services.Implementations
             response = new Response();
         }
 
-        public async Task<Response> InserTeamAsync(HttpContext context, TeamRequest request)
+        public async Task<Response> InsertTeamAsync(HttpContext context, TeamRequest request)
         {
             try
             {

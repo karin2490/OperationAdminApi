@@ -11,7 +11,7 @@ namespace OperationAdminApi.Services.Interfaces
 {
     public interface ITeamService
     {
-        Task<Response> InserTeamAsync(HttpContext context, TeamRequest request);
+        Task<Response> InsertTeamAsync(HttpContext context, TeamRequest request);
         Task<Response> UpdateTeamAsync(HttpContext context, TeamRequest request);
         Task<Response> DeleteTeamAsync(HttpContext context, int userId);
         Task<Response> GetAllNumberAsync(HttpContext context);
