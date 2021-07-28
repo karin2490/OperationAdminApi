@@ -4,6 +4,153 @@
         <name>OperationAdminApi</name>
     </assembly>
     <members>
+        <member name="M:OperationAdminApi.Controllers.V1.AccountController.GetAll">
+             <summary>
+             Get All Accounts service
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 GET api/v1/Accounts/GetAll
+                 {               
+                 }
+            
+             </remarks>        
+             <returns></returns>
+             <response code="200">Number of records (count)</response>
+             <response code="401"> Unauthorized: You need a token or valid token</response>        
+             <response code="500">There was an error with function</response>
+        </member>
+        <member name="M:OperationAdminApi.Controllers.V1.AccountController.GetAccountList">
+             <summary>
+             Get DropDown Accounts service
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 GET api/v1/Accounts/GetAccountList
+                 {               
+                 }
+            
+             </remarks>        
+             <returns></returns>
+             <response code="200">Number of records (count)</response>
+             <response code="401"> Unauthorized: You need a token or valid token</response>        
+             <response code="500">There was an error with function</response>
+        </member>
+        <member name="M:OperationAdminApi.Controllers.V1.AccountController.GetUsersByAccount(System.Int32)">
+            <summary>
+            Get a account
+            </summary>
+            <remarks>
+            Sample request:
+            GET    api/v1/Accounts/GetUsersByAccount/{accountId}     
+            </remarks>        
+            <returns></returns>
+            <response code="200">Number of records (Count)</response>
+            <response code="401"> Unauthorized: You need a token or valid token</response>
+            <response code="500">There was an error with function</response>
+        </member>
+        <member name="M:OperationAdminApi.Controllers.V1.AccountController.Create(OperationAdminApi.CommonObjects.Request.AccountRequest)">
+             <summary>
+             Account Create service
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 POST api/v1/Account/Create
+                 {       
+                     "AccountName": "string",
+                     "AccountDescript": "string"
+                 }
+            
+             </remarks>
+             <param name="accountReq"></param>        
+             <returns></returns>
+             <response code="200"> Added action</response>
+             <response code="401"> Unauthorized: You need a token or valid token</response>
+             <response code="406"> Data can't be empty or null (Name)</response>       
+             <response code="500"> There was an error with function</response>
+        </member>
+        <member name="M:OperationAdminApi.Controllers.V1.AccountController.Update(OperationAdminApi.CommonObjects.Request.AccountRequest)">
+             <summary>
+             Account Update service
+             </summary>
+             <remarks>
+             Sample request:
+            
+                POST api/v1/Account/Update
+                 {   
+                      "AccountId": 0,
+                     "AccountName": "string"
+                 }
+            
+             </remarks>
+             <param name="accountReq"></param>        
+             <returns></returns>
+             <response code="200">Update action</response>  
+             <response code="401"> Unauthorized: You need a token or valid token</response>
+             <response code="404"> Data not found (Id)</response> 
+             <response code="406"> Data can't be empty or null (Name)</response>
+             <response code="500">There was an error with function</response>
+        </member>
+        <member name="M:OperationAdminApi.Controllers.V1.AccountController.Delete(System.Int32)">
+             <summary>
+             Account Delete service
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 DELETE api/v1/Account/Delete/{accountId}
+                 {               
+                 }
+            
+             </remarks>
+             <param name="accountId"></param>        
+             <returns></returns>
+             <response code="200">Delete company</response>      
+             <response code="401"> Unauthorized: You need a token or valid token</response>  
+             <response code="404"> Data not found (Id)</response>
+             <response code="500">There was an error with function</response>
+        </member>
+        <member name="M:OperationAdminApi.Controllers.V1.AccountController.Active(System.Int32)">
+             <summary>
+             Active Account service
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 PUT api/v1/Account/Active/{accountId}
+                 {      
+                 }
+            
+             </remarks>
+             <param name="accountId"></param>        
+             <returns></returns>
+             <response code="200">Active company</response>   
+             <response code="401"> Unauthorized: You need a token or valid token</response>  
+             <response code="404"> Data not found (Id)</response>
+             <response code="500">There was an error with function</response>
+        </member>
+        <member name="M:OperationAdminApi.Controllers.V1.AccountController.Inactive(System.Int32)">
+             <summary>
+             Active Account service
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 PUT api/v1/Account/Inactive/{accountId}
+                 {      
+                 }
+            
+             </remarks>
+             <param name="accountId"></param>        
+             <returns></returns>
+             <response code="200">Active company</response>   
+             <response code="401"> Unauthorized: You need a token or valid token</response>  
+             <response code="404"> Data not found (Id)</response>
+             <response code="500">There was an error with function</response>
+        </member>
         <member name="M:OperationAdminApi.Controllers.V1.AuthController.Login(OperationAdminApi.CommonObjects.Request.AuthorizationRequest)">
              <summary>
              Login service
@@ -59,6 +206,19 @@
             <response code="500">There was an error with function</response>   
             <response code="500"> Fatal error Message = Error of function</response>
         </member>
+        <member name="M:OperationAdminApi.Controllers.V1.RolesController.GetRolesList(System.Int32,System.Int32)">
+            <summary>
+            Get All User service
+            </summary>
+            <remarks>
+            Sample request:
+            GET: api/v1/RolesControlles/GetRolesList
+            </remarks>        
+            <returns></returns>
+            <response code="200">Number of records (Count)</response>
+            <response code="401"> Unauthorized: You need a token or valid token</response>
+            <response code="500">There was an error with function</response>
+        </member>
         <member name="M:OperationAdminApi.Controllers.V1.RolesController.GetRole(System.Int32)">
              <summary>
              Get a specific userType
@@ -66,7 +226,7 @@
              <remarks>
              Sample request:
             
-                 GET api/v1/Roles/{Id}
+                 GET api/v1/Roles/{roleId}
                  {               
                  }
             
@@ -75,6 +235,24 @@
              <response code="200"> Number of records (count)</response>
              <response code="401"> Unauthorized: You need a token or valid token</response>        
              <response code="500"> There was an error with function</response>
+        </member>
+        <member name="M:OperationAdminApi.Controllers.V1.RolesController.GetModuleByRole(System.Int32)">
+             <summary>
+             Get User Type Function service
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 GET api/v1/Roles/GetModuleByRole/{Id}
+                 {                    
+                 }
+            
+             </remarks>
+             <param name="roleId">Auth</param>        
+             <returns></returns>
+             <response code="200">Number of records (count)</response>     
+             <response code="401"> Unauthorized: You need a token or valid token</response>
+             <response code="500">There was an error with function</response>
         </member>
         <member name="M:OperationAdminApi.Controllers.V1.RolesController.Create(OperationAdminApi.CommonObjects.Request.RoleRequest)">
              <summary>
@@ -119,6 +297,266 @@
              <response code="401"> Unauthorized: You need a token or valid token</response>
              <response code="404"> Data not found (Id)</response> 
              <response code="406"> Data can't be empty or null (Name)</response>
+             <response code="500">There was an error with function</response>
+        </member>
+        <member name="M:OperationAdminApi.Controllers.V1.RolesController.Inactive(System.Int32)">
+             <summary>
+             User Type Inactive service
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 PUT api/v1/Roles/Inactive/{roleId}
+                 {                      
+                 }
+            
+             </remarks>
+             <param name="roleId"></param>        
+             <returns></returns>
+             <response code="200">Inactive UserType</response>
+             <response code="401"> Unauthorized: You need a token or valid token</response>   
+             <response code="404"> Data not found (Id)</response>
+             <response code="500">There was an error with function</response>
+        </member>
+        <member name="M:OperationAdminApi.Controllers.V1.RolesController.Active(System.Int32)">
+             <summary>
+             User Type Inactive service
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 PUT api/v1/Roles/Active/{roleId}
+                 {                      
+                 }
+            
+             </remarks>
+             <param name="roleId"></param>        
+             <returns></returns>
+             <response code="200">Inactive UserType</response>
+             <response code="401"> Unauthorized: You need a token or valid token</response>   
+             <response code="404"> Data not found (Id)</response>
+             <response code="500">There was an error with function</response>
+        </member>
+        <member name="M:OperationAdminApi.Controllers.V1.RolesController.Delete(System.Int32)">
+             <summary>
+             User Type Delete service
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 DELETE api/v1/Roles/Delete/{roleId}
+                 {                       
+                 }
+            
+             </remarks>
+             <param name="roleId">Auth</param>        
+             <returns></returns>
+             <response code="200">Delete UserType</response> 
+             <response code="401"> Unauthorized: You need a token or valid token</response>
+             <response code="404"> Data not found (Id)</response>
+             <response code="500">There was an error with function</response>
+        </member>
+        <member name="M:OperationAdminApi.Controllers.V1.RolesController.SetModuleByRole(OperationAdminApi.CommonObjects.Request.ModuleByRoleRequest)">
+             <summary>
+             Add Function To User Type service
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 POST api/v1/Roles/SetModuleByRole
+                 {               
+                     "ModuleByRoleId": 0
+                     "RoleId":0
+                     "ModuleId":0
+                     
+                 }
+            
+             </remarks>
+             <param name="moduleBYroleRequest">Auth</param>        
+             <returns></returns>
+             <response code="200">Added features</response>                
+             <response code="401"> Unauthorized: You need a token or valid token</response>        
+             <response code="500">There was an error with function</response>
+        </member>
+        <member name="M:OperationAdminApi.Controllers.V1.TeamsController.GetAll">
+             <summary>
+             Get All Teams service
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 GET api/v1/Teams/GetAll
+                 {               
+                 }
+            
+             </remarks>        
+             <returns></returns>
+             <response code="200">Number of records (count)</response>
+             <response code="401"> Unauthorized: You need a token or valid token</response>        
+             <response code="500">There was an error with function</response>
+        </member>
+        <member name="M:OperationAdminApi.Controllers.V1.TeamsController.GetTeamsList">
+             <summary>
+             Get All Teams service
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 GET api/v1/Teams/GetTeamsList
+                 {               
+                 }
+            
+             </remarks>        
+             <returns></returns>
+             <response code="200">Number of records (count)</response>
+             <response code="401"> Unauthorized: You need a token or valid token</response>        
+             <response code="500">There was an error with function</response>
+        </member>
+        <member name="M:OperationAdminApi.Controllers.V1.TeamsController.GetAllWithAccounts">
+             <summary>
+             Get All Teams service
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 GET api/v1/Teams/GetAllWithAccounts
+                 {               
+                 }
+            
+             </remarks>        
+             <returns></returns>
+             <response code="200">Number of records (count)</response>
+             <response code="401"> Unauthorized: You need a token or valid token</response>        
+             <response code="500">There was an error with function</response>
+        </member>
+        <member name="M:OperationAdminApi.Controllers.V1.TeamsController.GetAccountsOfATeam(System.Int32)">
+            <summary>
+            Get accounts of a team
+            </summary>
+            <remarks>
+            Sample request:
+            GET    api/v1/Teams/GetAccountsOfATeam/{teamID}     
+            </remarks>        
+             /// <param name="teamID"></param>  
+            <returns></returns>
+            <response code="200">Number of records (Count)</response>
+            <response code="401"> Unauthorized: You need a token or valid token</response>
+            <response code="500">There was an error with function</response>
+        </member>
+        <member name="M:OperationAdminApi.Controllers.V1.TeamsController.GetTeamById(System.Int32)">
+            <summary>
+            Get a team
+            </summary>
+            <remarks>
+            Sample request:
+            GET    api/v1/Teams/{teamID}     
+            </remarks>        
+             /// <param name="teamID"></param>  
+            <returns></returns>
+            <response code="200">Number of records (Count)</response>
+            <response code="401"> Unauthorized: You need a token or valid token</response>
+            <response code="500">There was an error with function</response>
+        </member>
+        <member name="M:OperationAdminApi.Controllers.V1.TeamsController.Create(OperationAdminApi.CommonObjects.Request.TeamRequest)">
+             <summary>
+             Teams Create service
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 POST api/v1/Teams/Create
+                 {       
+                     "TeamName": "string",
+                     "Status": true
+                 }
+            
+             </remarks>
+             <param name="teamReq"></param>        
+             <returns></returns>
+             <response code="200"> Added action</response>
+             <response code="401"> Unauthorized: You need a token or valid token</response>
+             <response code="406"> Data can't be empty or null (Name)</response>       
+             <response code="500"> There was an error with function</response>
+        </member>
+        <member name="M:OperationAdminApi.Controllers.V1.TeamsController.Update(OperationAdminApi.CommonObjects.Request.TeamRequest)">
+             <summary>
+             Teams Update service
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 POST api/v1/Teams/Update
+                 {       
+                     "Id": 0,
+                     "Name": "string",
+                     "Description": "string",
+                     "Id": 0,        
+                 }
+            
+             </remarks>
+             <param name="teamReq"></param>        
+             <returns></returns>
+             <response code="200">Update action</response>  
+             <response code="401"> Unauthorized: You need a token or valid token</response>
+             <response code="404"> Data not found (Id)</response> 
+             <response code="406"> Data can't be empty or null (Name)</response>
+             <response code="500">There was an error with function</response>
+        </member>
+        <member name="M:OperationAdminApi.Controllers.V1.TeamsController.Delete(System.Int32)">
+             <summary>
+             Teams Delete service
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 DELETE api/v1/Teams/Delete/{teamId}
+                 {               
+                 }
+            
+             </remarks>
+             <param name="teamId"></param>        
+             <returns></returns>
+             <response code="200">Delete company</response>      
+             <response code="401"> Unauthorized: You need a token or valid token</response>  
+             <response code="404"> Data not found (Id)</response>
+             <response code="500">There was an error with function</response>
+        </member>
+        <member name="M:OperationAdminApi.Controllers.V1.TeamsController.Active(System.Int32)">
+             <summary>
+             Active Teams service
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 PUT api/v1/Teams/Active/{Id}
+                 {      
+                 }
+            
+             </remarks>
+             <param name="teamId"></param>        
+             <returns></returns>
+             <response code="200">Active company</response>   
+             <response code="401"> Unauthorized: You need a token or valid token</response>  
+             <response code="404"> Data not found (Id)</response>
+             <response code="500">There was an error with function</response>
+        </member>
+        <member name="M:OperationAdminApi.Controllers.V1.TeamsController.Inactive(System.Int32)">
+             <summary>
+             Inactive Teams service
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 PUT api/v1/Teams/Inactive/{Id}
+                 {      
+                 }
+            
+             </remarks>
+             <param name="teamId"></param>        
+             <returns></returns>
+             <response code="200">Active company</response>   
+             <response code="401"> Unauthorized: You need a token or valid token</response>  
+             <response code="404"> Data not found (Id)</response>
              <response code="500">There was an error with function</response>
         </member>
         <member name="M:OperationAdminApi.Controllers.V1.UsersController.GetAll(System.Int32,System.Int32)">

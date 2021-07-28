@@ -1,4 +1,4 @@
-export class usersModel{
+export interface usersModel{
     userid :number;
     firstName:string;   
     lastName:string;

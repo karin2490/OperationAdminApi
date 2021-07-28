@@ -88,12 +88,12 @@ namespace OperationAdminApi.Controllers.V1
         {
             try
             {
-                if (id <= 0)
+                if (roleId <= 0)
                 {
                     return BadRequest();
                 }
 
-                Response response = await _rolesService.GetRoleById(HttpContext, id);
+                Response response = await _rolesService.GetRoleById(HttpContext, roleId);
                 if (response.Type != ResponseType.SUCCESS)
                 {
                     return StatusCode((int)response.Type, response);
@@ -133,11 +133,11 @@ namespace OperationAdminApi.Controllers.V1
         {
             try
             {
-                if (id <= 0)
+                if (roleId <= 0)
                 {
                     return BadRequest();
                 }
-                Response response = await _rolesService.GetModuleByRoleId(HttpContext, id);
+                Response response = await _rolesService.GetModuleByRoleId(HttpContext, roleId);
                 if (response.Type != ResponseType.SUCCESS)
                 {
                     return StatusCode((int)response.Type, response);
@@ -264,7 +264,7 @@ namespace OperationAdminApi.Controllers.V1
         {
             try
             {
-                Response response = await _rolesService.InactiveRoleAsync(HttpContext, id);
+                Response response = await _rolesService.InactiveRoleAsync(HttpContext, roleId);
                 if (response.Type != ResponseType.SUCCESS)
                 {
                     return StatusCode((int)response.Type, response);
@@ -304,7 +304,7 @@ namespace OperationAdminApi.Controllers.V1
         {
             try
             {
-                Response response = await _rolesService.ActiveRoleAsync(HttpContext, id);
+                Response response = await _rolesService.ActiveRoleAsync(HttpContext, roleId);
                 if (response.Type != ResponseType.SUCCESS)
                 {
                     return StatusCode((int)response.Type, response);
@@ -344,7 +344,7 @@ namespace OperationAdminApi.Controllers.V1
         {
             try
             {
-                Response response = await _rolesService.DeleteRoleAsync(HttpContext, id);
+                Response response = await _rolesService.DeleteRoleAsync(HttpContext, roleId);
                 if (response.Type != ResponseType.SUCCESS)
                 {
                     return StatusCode((int)response.Type, response);
